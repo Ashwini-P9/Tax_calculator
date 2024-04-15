@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tax Calculator</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/fontawesome.min.css" integrity="sha384-BY+fdrpOd3gfeRvTSMT+VUZmA728cfF9Z2G42xpaRkUGu2i3DyzpTURDo5A6CaLK" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/fontawesome.min.css" integrity="sha512-UuQ/zJlbMVAw/UU8vVBhnI4op+/tFOpQZVT+FormmIEhRSCnJWyHiBbEVgM4Uztsht41f3FzVWgLuwzUqOObKw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="./Taxcalculator.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Tax Calculator</h1>
+    <form id="taxForm">
+      <div class="question"> 
+      <label for="income">Enter gross annual income</label>
+      
+      <i class="fa fa-question-circle" aria-hidden="true" title="Gross annual income is your total salary in a year before any deductions"></i> 
+    </div>
+      <div class="flex-item"> 
+      <input type="text" id="income" class="form-control" placeholder="Enter gross annual income" pattern="\d*" title="Please enter a valid number" >
+      <span class="error-tooltip" id="incomeErrorTooltip" title=" Please enter numbers only">
+        <i class="fas fa-exclamation-circle" aria-hidden="true"></i>
+        </span>
+    </div>
+    <br>
+
+    <label for="otherIncome">Enter extra income:</label>
+    <span><i class="fa fa-question-circle" aria-hidden="true" title="Extra income from other sources"></i></span>
+    <div class="flex-item"> 
+      <input type="text" id="otherIncome" class="form-control" placeholder="Enter  extra income form other sources" pattern="\d*" title="Please enter a valid number">
+      <span class="error-tooltip" id="otherIncomeErrorTooltip" title=" Please enter numbers only">
+         <i class="fas fa-exclamation-circle" aria-hidden="true"></i>
+        </span>
+    </div>
+  
+       
+    
+      <label for="age">Enter age group</label>
+      <i class="fa fa-question-circle" aria-hidden="true" title="taxes differ for different age "></i> 
+      <div class="flex-item"> 
+      <select id="age" class="form-control required" required>
+        <option value=""></option>
+        <option value="0-39">Under 40</option>
+        <option value="40-59">40 - 59</option>
+        <option value="60+">60 and above</option>
+      </select>
+      <span class="error-tooltip" id="ageErrorTooltip" title="Please select your age">
+        <i class="fas fa-exclamation-circle" aria-hidden="true"></i>
+       </span> 
+      </div>
+
+      <label for="deductions">Enter total applicable deductions:</label>
+      <i class="fa fa-question-circle" aria-hidden="true" title="applicable deduction except tax"></i> 
+      <div class="flex-item"> 
+      <input type="text" id="deductions" class="form-control" placeholder="Add total applicable deductions" pattern="\d*" title="Please enter a valid number">
+      <span class="error-tooltip" id="deductionsErrorTooltip" title="Please enter numbers only"> 
+        <i class="fas fa-exclamation-circle" aria-hidden="true"></i>
+      </span>
+    </div> 
+      
+      
+       
+      <button type="button"   class="btn btn-primary" onclick="calculateTax()">Submit</button>
+    </form>
+    <p id="taxResult"></p>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="taxModal" tabindex="-1" role="dialog" aria-labelledby="taxModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="taxModalLabel">Tax Calculation Result</h5>
+         
+        </div>
+        <div class="modal-body">
+          <p id="modalContent"></p>
+          <button type="submit" class="close-btn"  id='close' data-dismiss="modal" aria-label="close" onclick="closeCalculator()">
+            <span aria-hidden="true">Close</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="./TaxCalculator.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
